@@ -25,8 +25,8 @@ public class OrderProducer<T> {
     private KafkaTemplate<String, OrderMessage> kafkaTemplate;
 
 
-    public void publish(OrderMessage message, String topic, String key, String value) {
-        var record = new ProducerRecord<>(topic, key, value);
+    public void publish(OrderMessage message) {
+        var record = new ProducerRecord<>("");
         kafkaProducer.send((ProducerRecord<String, T>) record, (data, ex) -> {
             if (ex != null) {
                 ex.printStackTrace();
@@ -42,4 +42,6 @@ public class OrderProducer<T> {
 
 
     }
+
+
 }
