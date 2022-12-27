@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import org.apache.kafka.clients.producer.Callback;
 
+import static org.apache.coyote.http11.Constants.a;
+
 @Service
 public class OrderProducer<T> {
     // we will just do some log for callback
@@ -26,14 +28,19 @@ public class OrderProducer<T> {
 
 
     public void publish(OrderMessage message) {
-        var record = new ProducerRecord<>("");
-        kafkaProducer.send((ProducerRecord<String, T>) record, (data, ex) -> {
+        kafkaTemplate.send("",message);
+        /*
+        var aff = "null";
+        var record = new ProducerRecord<>(String aff);
+        kafkaProducer.send( record, (data, ex) -> {
             if (ex != null) {
                 ex.printStackTrace();
                 return;
             }
             LOG.info("Order {}, item {}, published successfully", message.getOrderNumber(), message.getItemName());
         });
+        */
+
         // Callback --> return success or failured message
         // publishing might not always smooth, broker might not be available, or network having latency
         // in such case, we can add callback to Future object to handle publishing success or failure
