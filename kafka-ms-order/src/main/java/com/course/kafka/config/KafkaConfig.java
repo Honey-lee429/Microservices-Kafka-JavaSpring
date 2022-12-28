@@ -13,4 +13,12 @@ public class KafkaConfig {
     public NewTopic topicOrder(){
         return TopicBuilder.name("t-commodity-order").partitions(2).replicas(1).build();
     }
+
+
+    //commonly used for communication among microservices
+    @Bean
+    public NewTopic topicOrderReply(){
+        return TopicBuilder.name("t-commodity-order-reply").partitions(1).replicas(1).build();
+    }
+
 }
