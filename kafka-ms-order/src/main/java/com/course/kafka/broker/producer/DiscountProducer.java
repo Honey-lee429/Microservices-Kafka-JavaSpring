@@ -9,7 +9,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import java.util.concurrent.ExecutionException;
 
 public class DiscountProducer {
-
     private static final Logger LOG = LoggerFactory.getLogger(DiscountProducer.class);
 
     @Autowired
