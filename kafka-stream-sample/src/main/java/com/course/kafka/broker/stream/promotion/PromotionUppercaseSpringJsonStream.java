@@ -21,6 +21,7 @@ public class PromotionUppercaseSpringJsonStream {
         var stringSerde = Serdes.String();
         // we will use JsonSerde as value serde
         var jsonSerde = new JsonSerde<>(PromotionMessage.class);
+
         var sourceStream = builder.stream("t-commodity-promotion", Consumed.with(stringSerde, jsonSerde));
 
         //Transform the data using method reference to uppercasePromotionCode
